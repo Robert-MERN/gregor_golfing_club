@@ -50,7 +50,7 @@ const Navbar = () => {
                                 // size="large"
                                 className='text-zinc-200'
                             >
-                                <MenuIcon />
+                                <MenuIcon className='text-zinc-200' />
                             </IconButton>
                         </div>
 
@@ -70,12 +70,12 @@ const Navbar = () => {
                         <div aria-describedby='nav_options_popover' onClick={handle_nav_options_pop} className='w-fit' >
                             <div className='lg:hidden block'>
                                 <IconButton size="small" className='text-zinc-200' >
-                                    <MenuIcon />
+                                    <MenuIcon className='text-zinc-200' />
                                 </IconButton>
                             </div>
                             <div className='lg:block hidden'>
                                 <IconButton size="small" className='text-zinc-200' >
-                                    <MoreVertIcon />
+                                    <MoreVertIcon className='text-zinc-200' />
                                 </IconButton>
                             </div>
 
