@@ -223,7 +223,7 @@ const Edit_user_admin = () => {
 
     return (
 
-        <div className={`w-full my-10 lg:my-0 bg-slate-100 h-full flex justify-center px-[10px] lg:px-[20px] lg:pt-0 pt-[20px] rounded-md`} >
+        <div className={`w-full my-10 lg:my-0 bg-slate-100 h-full flex justify-center px-[0px] lg:px-[20px] lg:pt-0 pt-[20px] rounded-md`} >
             {cookieUser &&
                 <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-5 md:gap-6 p-[20px] mb-6' >
 

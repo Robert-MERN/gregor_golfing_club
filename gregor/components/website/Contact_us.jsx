@@ -191,7 +191,7 @@ const Contact_us = ({ user }) => {
                                 </div>
                             </div>
                             <div className="flex-1">
-                                <form onSubmit={handleSubmit} className='w-full h-full bg-white rounded-xl p-6 flex flex-col gap-4' >
+                                <form onSubmit={handleSubmit} className='w-full h-full bg-white rounded-xl px-[10px] py-6 md:p-6 flex flex-col gap-4' >
                                     <FormControl size="small">
                                         <OutlinedInput
                                             placeholder='Full Name*'

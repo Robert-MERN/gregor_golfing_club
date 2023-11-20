@@ -6,6 +6,7 @@ import Section1 from './landing_page_sections/Section1';
 import Section2 from './landing_page_sections/Section2';
 import Section3 from './landing_page_sections/Section3';
 import Section4 from './landing_page_sections/Section4';
+import Section5 from './landing_page_sections/Section5';
 import Footer from './utilities/Footer';
 
 
@@ -23,6 +24,7 @@ const Langing_page = ({ CJS_KEY }) => {
             <Section2 />
             <Section3 />
             <Section4 />
+            <Section5 />
             <Footer />
         </div >
     )

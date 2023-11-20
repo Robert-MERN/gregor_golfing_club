@@ -157,7 +157,7 @@ const adding_member_form_admin = () => {
 
     return (
         <Fade>
-            <div className='w-full bg-white rounded-md flex flex-col gap-8 px-[30px] lg:px-[40px] pt-[20px] bg-transparent'>
+            <div className='w-full bg-white rounded-md flex flex-col gap-8 px-[20px] lg:px-[40px] pt-[20px] bg-transparent'>
                 <div className='flex flex-col w-full gap-1 justify-center' >
                     <p className='text-[20px] md:text-[30px] font-semibold text-slate-700' >
                         Add New Member
