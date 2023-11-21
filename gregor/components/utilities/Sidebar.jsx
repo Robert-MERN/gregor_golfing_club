@@ -121,6 +121,11 @@ const Sidebar = () => {
                     link: "/contact-us",
                     icon: <SupportAgentIcon />
                 },
+                {
+                    name: "About",
+                    link: "/about",
+                    icon: <InfoIcon />
+                },
             ]
 
         },
