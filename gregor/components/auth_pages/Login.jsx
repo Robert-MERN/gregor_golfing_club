@@ -174,7 +174,7 @@ const Login = ({ handlePage }) => {
                     </div>
                 </div>
 
-                <button className='bg-blue-500 text-slate-100 text-[15px] md:text-[17px] w-full py-[8px] rounded-md mt-6 hover:opacity-80 transition-all' >Sign in</button>
+                <button className='bg-[#6CBE45] text-slate-100 text-[15px] md:text-[17px] w-full py-[8px] rounded-md mt-6 hover:opacity-80 transition-all' >Sign in</button>
                 {/* <div>
                     <p className='text-[13px] text-stone-500 text-center' >Don't have an account?<span onClick={() => router.push("/signup")} className='font-bold cursor-pointer hover:underline ' > Sign up</span> </p>
                 </div> */}
