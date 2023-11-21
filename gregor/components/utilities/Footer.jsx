@@ -14,17 +14,17 @@ const Footer = () => {
     {
       icon: <TwitterIcon />,
       name: "icon-2",
-      link: "https://twitter.com/turpio",
+      link: "https://twitter.com/gpcgolf",
     },
     {
       icon: <InstagramIcon />,
       name: "icon-3",
-      link: "https://www.instagram.com/turpio/",
+      link: "https://www.instagram.com/gpcgolf/",
     },
     {
       icon: <MailIcon />,
       name: "icon-4",
-      link: "mailto:info@turpio.com",
+      link: "mailto:info@gpcgolf.com",
     }
   ]
   const [hover, sethover] = useState({
@@ -49,6 +49,9 @@ const Footer = () => {
             <p className='text-[16px] md:text-[17px] text-center 2xl:text-[20px] text-stone-100 font-medium'>We take the work out of connecting with others so you can accomplish more.</p>
           </div>
           <div className='flex-1 lg:border-x border-t lg:border-t-0 border-stone-600 flex flex-col gap-5 2xl:gap-6 lg:px-8 items-center lg:items-start pt-6 lg:pt-0' >
+            <Link href="/" >
+              <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >GPC-Golf</p>
+            </Link>
             <Link href="/login" >
               <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Member Login</p>
             </Link>
@@ -57,9 +60,6 @@ const Footer = () => {
             </Link>
             <Link href="/contact-us" >
               <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Contact Us</p>
-            </Link>
-            <Link href="/terms-conditions" >
-              <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Terms & Conditions</p>
             </Link>
           </div>
           <div className='flex-1 flex flex-col gap-4 border-t border-stone-600 lg:border-none lg:pl-8 items-center lg:items-start pt-6 lg:pt-0' >

@@ -62,9 +62,9 @@ const Navbar = () => {
                     <div className='justify-end flex gap-6 items-center' >
 
                         <button onClick={() => switchSidebarTabs("Add to Contacts")} className='text-[15px] text-zinc-200 font-semibold font-sans whitespace-nowrap hidden lg:block italic select-none' >Call <a className='text-[#6CBE45] px-1' href="tel:"> 1-800-555-0101 </a> </button>
-                        <Link href="/about" >
+                        {/* <Link href="/about" >
                             <button className='text-[15px] text-zinc-200  font-semibold select-none font-sans whitespace-nowrap hidden lg:block' >About</button>
-                        </Link>
+                        </Link> */}
 
 
                         <div aria-describedby='nav_options_popover' onClick={handle_nav_options_pop} className='w-fit' >

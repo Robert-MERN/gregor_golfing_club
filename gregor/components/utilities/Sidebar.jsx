@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import text_logo from "@/public/images/text_logo_white.png"
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import GroupsIcon from '@mui/icons-material/Groups';
+import InfoIcon from '@mui/icons-material/Info';
 
 
 const Sidebar = () => {
@@ -69,6 +70,11 @@ const Sidebar = () => {
                     name: "Contact Us",
                     link: "/contact-us",
                     icon: <SupportAgentIcon />
+                },
+                {
+                    name: "About",
+                    link: "/about",
+                    icon: <InfoIcon />
                 },
             ]
 
