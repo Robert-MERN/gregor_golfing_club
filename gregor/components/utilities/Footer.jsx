@@ -67,7 +67,7 @@ const Footer = () => {
               {/* icons */}
               {
                 icons.map((i, index) => (
-                  <a href={i.link} target="__blank" key={index} onMouseOver={() => hoverIcon(true, i.name)} onMouseLeave={() => hoverIcon(false, i.name)} className={`w-[50px] h-[50px] relative rounded-full bg-glare overflow-hidden cursor-pointer border border-stone-100 ${styles.tapHighlight}`} >
+                  <a href={i.link} target="__blank" key={index} onMouseOver={() => hoverIcon(true, i.name)} onMouseLeave={() => hoverIcon(false, i.name)} className={`w-[50px] h-[50px] relative rounded-full bg-black-trans overflow-hidden cursor-pointer border border-stone-100 ${styles.tapHighlight}`} >
                     <div className={`absolute inset-0 w-full h-full grid place-content-center text-stone-100 transition-all rounded-full duration-[400ms] ${hover[i.name] ? "opacity-0" : "opacity-100"}`} >
                       {i.icon}
                     </div>
