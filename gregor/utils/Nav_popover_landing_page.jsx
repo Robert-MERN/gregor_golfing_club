@@ -48,12 +48,12 @@ const Nav_popover_landing_page = ({ anchorEl, close }) => {
                     </button>
                 </Link>
 
-                <Link href="/terms-conditions">
+                {/* <Link href="/terms-conditions">
                     <button onClick={() => { close(); }} className='text-stone-200 text-[12px] flex items-center gap-2 cursor-pointer select-none p-[8px] hover:bg-stone-600 transition-all w-full'>
                         <AssignmentIcon className='scale-[.8]' />
                         Terms & Conditions
                     </button>
-                </Link>
+                </Link> */}
 
                 <Link href="/login">
                     <div className='px-[10px] py-[12px] border-t border-stone-600 hover:bg-stone-600 transition-all' >
