@@ -35,8 +35,8 @@ export default async function handler(req, res) {
                 const token = await jwt.sign(plainPayLoad, process.env.JWT_KEY);
 
 
-                // cookie expires in 30 days
-                const expiryDate = new Date(new Date().setDate(new Date().getDate() + 30));
+                // cookie expires in 1 days
+                const expiryDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 
                 // now setting that token in cookies
                 setCookie("userAccountToken", token, { req, res, expires: expiryDate });

@@ -67,8 +67,8 @@ export default async function handler(req, res) {
                 const plainPayLoad = plainPayLoadMaker(updatedUser);
                 // converting user object in token 
                 const token = await jwt.sign(plainPayLoad, process.env.JWT_KEY);
-                // cookie expires in 30 days
-                const expiryDate = new Date(new Date().setDate(new Date().getDate() + 30));
+                // cookie expires in 1 days
+                const expiryDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
                 // checking cookie if it exists 
                 const cookieUser = getCookie("userAccountToken")
                 // now setting that token in cookies
