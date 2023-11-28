@@ -185,10 +185,9 @@ const Sidebar = () => {
                                 <React.Fragment key={index}>
                                     <p className='text-[16px] text-slate-400 bg-stone-300 my-3 uppercase'>{each.title}</p>
                                     {each.navLinks.map((i, index) => (
-                                        <Link href={i.link} >
+                                        <Link   key={index} href={i.link} >
                                             <button
                                                 onClick={() => { switchSidebarTabs(i.name); }}
-                                                key={index}
                                                 className={`whitespace-nowrap py-[10px] text-[14px] hover:bg-lime-500 hover:text-white w-full rounded-md select-none my-3 flex gap-3 px-4 items-center transition-all ${page_url === i.link ? "text-white bg-[#6CBE45]" : "text-slate-200"}`}
                                             >
                                                 {i.icon}

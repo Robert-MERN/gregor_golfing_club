@@ -65,7 +65,7 @@ const Add_edit_guests_fees_modal = ({ open, close }) => {
         >
             <form
                 onSubmit={handle_submit}
-                className={`h-[80vh] md:w-[500px] md:h-[70vh] xl:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${styles.scrollBar}`} >
+                className={`h-fit md:w-[500px] xl:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${styles.scrollBar}`} >
                 <div
                     onClick={handleClose}
                     className='absolute right-3 top-2 cursor-pointer select-none'

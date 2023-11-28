@@ -38,7 +38,7 @@ const Bay_restriction_message_modal = ({ open, close }) => {
             open={open.bay_restriction_message_modal}
             onClose={handle_close}
         >
-            <div className='h-[50vh] xl:h-[400px] md:w-[500px] p-6 md:p-7 relative flex flex-col justify-between' >
+            <div className='h-fit xl:h-[400px] md:w-[500px] p-6 md:p-7 relative flex flex-col justify-between' >
                 <div onClick={handle_close} className='absolute hidden md:block right-0 md:right-3 top-2 md:top-2 cursor-pointer select-none' >
                     <IconButton >
                         <CloseIcon className='scale-[.9] md:scale-[1.1] text-stone-500' />

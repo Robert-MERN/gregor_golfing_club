@@ -216,7 +216,7 @@ const Select_players_modal = ({ open, close }) => {
         <Dialog open={open.restrict_hours_modal} onClose={handleClose}>
             <form
                 onSubmit={handleSubmit}
-                className={`h-[70vh] md:w-[500px] md:h-[50vh] xl:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${styles.scrollBar}`}
+                className={`h-fit md:w-[500px] xl:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${styles.scrollBar}`}
             >
                 <div
                     onClick={handleClose}

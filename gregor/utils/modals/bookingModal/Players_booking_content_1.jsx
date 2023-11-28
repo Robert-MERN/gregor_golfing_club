@@ -57,7 +57,7 @@ const Players_booking_content_1 = ({
 
     return (
         <Fade left duration={300}>
-            <div className={`h-[60vh] md:w-[500px] xl:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${style.scrollBar}`} >
+            <div className={`h-fit md:w-[500px] xl:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${style.scrollBar}`} >
                 <div
                     onClick={handleClose}
                     className='absolute right-3 top-2 cursor-pointer select-none'
