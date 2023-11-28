@@ -209,7 +209,7 @@ const Players_booking_content_2 = ({
         <Fade right duration={400}>
             <form
                 onSubmit={handleSubmit}
-                className={`h-[70vh] md:w-[500px] md:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${style.scrollBar}`}
+                className={`h-[55vh] md:h-[50vh] md:w-[500px] xl:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${style.scrollBar}`}
             >
                 <div
                     onClick={close_modal}

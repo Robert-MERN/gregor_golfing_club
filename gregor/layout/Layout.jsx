@@ -57,22 +57,39 @@ const Layout = ({ children }) => {
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
+            
             <Select_players_modal open={modals} close={closeModal} />
+
             <Logout_modal open={modals} close={() => closeModal("logout_modal")} />
+
             <Delete_booking_modal open={modals} close={() => closeModal("delete_booking_modal")} />
+            
             <Delete_member_modal open={modals} close={() => closeModal("delete_member_modal")} />
+
             <Block_member_modal open={modals} close={() => closeModal("block_member_modal")} />
+
             <Unblock_member_modal open={modals} close={() => closeModal("unblock_member_modal")} />
+
             <Renewal_subscription_modal open={modals} close={() => closeModal("renewal_subscription_modal")} />
+
             <Account_status_modal open={modals} close={() => closeModal("account_status_modal")} />
+
             <Unrestrict_slot_modal open={modals} close={() => closeModal("unrestrict_slot_modal")} />
+
             <Unrestrict_bay_modal open={modals} close={() => closeModal("unrestrict_bay_modal")} />
+
             <Subscription_status_modal open={modals} close={() => closeModal("subscription_status_modal")} />
+
             <Restrict_hours_modal open={modals} close={() => closeModal("restrict_hours_modal")} />
+
             <Restrict_bay_modal open={modals} close={() => closeModal("restrict_bay_modal")} />
-            <Add_edit_guests_fees_modal open={modals} />
+
+            <Add_edit_guests_fees_modal open={modals} close={() => closeModal("set_member_role_modal")} />
+
             <Set_member_role_modal open={modals} close={() => closeModal("set_member_role_modal")} />
-            <Bay_restriction_message_modal open={modals} close={()=> closeModal("bay_restriction_message_modal")} />
+
+            <Bay_restriction_message_modal open={modals} close={() => closeModal("bay_restriction_message_modal")} />
+
             <Snackbar
                 anchorOrigin={{ vertical: "top", horizontal: "center" }}
                 TransitionComponent={TransitionDown}

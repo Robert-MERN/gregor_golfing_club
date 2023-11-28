@@ -124,7 +124,7 @@ const Restrict_bay_modal = ({ open, close }) => {
         <Dialog open={open.restrict_bay_modal} onClose={handleClose}>
             <form
                 onSubmit={handleSubmit}
-                className={`h-[80vh] md:w-[500px] md:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${styles.scrollBar}`}
+                className={`h-[50vh] md:w-[500px] md:h-[450px] p-5 md:p-7 pt-8 md:pt-12 pb-6 relative flex flex-col gap-4 md:gap-10 justify-between overflow-x-hidden ${styles.scrollBar}`}
             >
                 <div
                     onClick={handleClose}

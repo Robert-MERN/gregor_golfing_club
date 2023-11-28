@@ -33,9 +33,7 @@ export const ContextProvider = ({ children }) => {
 
     const defaultModals = {
         select_players_modal: false,
-        edit_campaign_modal: false,
         logout_modal: false,
-        subscription_status_modal: false,
         add_edit_guests_fees_modal: false,
         restrict_hours_modal: false,
         restrict_bay_modal: false,

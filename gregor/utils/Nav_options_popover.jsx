@@ -13,6 +13,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import Link from 'next/link';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import GroupsIcon from '@mui/icons-material/Groups';
+import style from "@/styles/Home.module.css";
 
 const Nav_options_popover = ({ anchorEl, close }) => {
     const { cookieUser, switchSidebarTabs, openModal, } = useStateContext()
@@ -31,7 +32,7 @@ const Nav_options_popover = ({ anchorEl, close }) => {
                 horizontal: 'left',
             }}
         >
-            <div className='w-[230px] bg-stone-800' >
+            <div className={`w-[230px] rounded-none  max-h-[315px] md:max-h-fit overflow-y-auto bg-stone-800 ${style.scrollBar} `} >
                 <Link href="/home">
                     <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                         <SportsGolfIcon />
