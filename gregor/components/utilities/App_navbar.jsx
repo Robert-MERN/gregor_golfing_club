@@ -42,7 +42,7 @@ const Navbar = () => {
             >
                 <div className='flex items-center justify-between w-full overflow-hidden' >
                     <div className='' >
-                        <div className='lg:block hidden '>
+                        <div className='xl:block hidden '>
                             <IconButton
 
                                 onClick={handleSidebar}
@@ -54,8 +54,11 @@ const Navbar = () => {
                             </IconButton>
                         </div>
 
-                        <div className='block w-[120px] h-[120px] lg:hidden' >
-                            <Image className='w-full h-full object-contain' src={icon_logo} alt="icon_image" />
+
+                        <div className='block overflow-hidden w-[120px] h-[120px] xl:hidden' >
+                            <Link href="/">
+                                <Image className='w-full h-full object-contain' src={icon_logo} alt="icon_image" />
+                            </Link>
                         </div>
 
                     </div>
@@ -68,12 +71,12 @@ const Navbar = () => {
 
 
                         <div aria-describedby='nav_options_popover' onClick={handle_nav_options_pop} className='w-fit' >
-                            <div className='lg:hidden block'>
+                            <div className='xl:hidden block'>
                                 <IconButton size="small" className='text-zinc-200' >
                                     <MenuIcon className='text-zinc-200' />
                                 </IconButton>
                             </div>
-                            <div className='lg:block hidden'>
+                            <div className='xl:block hidden'>
                                 <IconButton size="small" className='text-zinc-200' >
                                     <MoreVertIcon className='text-zinc-200' />
                                 </IconButton>

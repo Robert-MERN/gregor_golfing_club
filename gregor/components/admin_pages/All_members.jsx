@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,17 +9,20 @@ import Paper from '@mui/material/Paper';
 import useStateContext from '@/context/ContextProvider';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import styles from "@/styles/Home.module.css";
+import SearchIcon from '@mui/icons-material/Search';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 const headers = [
     "Member ID",
     "User Name",
     "Email",
-    "Password",
     "Role",
+    "Specify Role",
     "Subscription Date",
     "Subscription Status",
     "Account Status",
@@ -64,10 +67,11 @@ export default function All_users() {
         })
     }
 
-    const edit_user = (id) => {
+    const edit_user = (id, only_text) => {
         navigator.clipboard.writeText(id);
         toast.info("Id has been copied", { ...toastConfig, toastId: "fetchingAllUsersFaliure" });
-        router.push("/admin/add-new-member");
+
+        if (!only_text) router.push("/admin/add-new-member");
     }
 
     const getSubscriptionStatus = (subscriptionDate, status_name) => {
@@ -103,12 +107,54 @@ export default function All_users() {
 
     };
 
+
+    const [search_text, set_search_text] = useState("");
+    const [sizeInc, setsizeInc] = useState(false)
+    const sizeControl = (val) => {
+        setsizeInc(val)
+    }
+    const [hoverInput, setHoverInput] = useState(false);
+
+    const trigger_search = (e, keyboard) => {
+        if (e.code === "Enter" && search_text) {
+            handle_get_all_members_API(set_all_members, "", cookieUser.id, "", "", search_text);
+        } else if (e === "search" && search_text) {
+            handle_get_all_members_API(set_all_members, "", cookieUser.id, "", "", search_text);
+        } else {
+            if (!keyboard || (keyboard && e.code === "Enter")) {
+                handle_get_all_members_API(set_all_members, "", cookieUser.id, "");
+            }
+        }
+    }
+
     return (
-        <div className={`w-full h-[calc(100vh-60px)] overflow-y-auto ${openSidebar ? "px-[20px] md:px-[40px]" : "px-[80px]"} pt-24 lg:pt-6 transition-all duration-300 flex items-center flex-col`}>
+        <div className={`w-full h-[calc(100vh-60px)] overflow-y-auto ${openSidebar ? "px-[20px] md:px-[40px]" : "px-[80px]"} ${styles.scrollBar} pt-24 lg:pt-6 transition-all duration-300 flex items-center flex-col`}>
 
+            <div className={`w-[90vw] lg:w-[1000px] xl:w-[1200] 2xl:w-[1400px] flex mb-4`}>
+                <div onMouseOver={() => setHoverInput(true)} onMouseLeave={() => setHoverInput(false)} style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className={`${hoverInput ? "bg-neutral-700" : "bg-zinc-700"} px-[6px] flex transition-all duration-300 rounded-md md:w-fit w-full`} >
+                    <Tooltip title="Search" arrow>
+                        <IconButton
+                            onClick={() => trigger_search("search")}
+                        >
+                            <SearchIcon className={`text-gray-300 scale-90`} />
+                        </IconButton>
+                    </Tooltip>
+                    <input
+                        type="text"
+                        placeholder='Search member(s)'
+                        value={search_text}
+                        onChange={e => set_search_text(e.target.value)}
+                        autoFocus={true}
+                        onFocus={() => sizeControl(true)}
+                        onBlur={() => sizeControl(false)}
+                        onKeyDown={(e) => trigger_search(e, true)}
+                        className={`${hoverInput ? "bg-neutral-700" : "bg-zinc-700"} outline-none border-none  text-white caret-gray-400 text-[16px] transition-all duration-300 ${sizeInc ? "w-full md:w-[24rem]" : "md:w-[16rem] w-full"} `}
+                    />
+                </div>
+            </div>
 
-            <div className={`w-[90vw] lg:w-[1000px] xl:w-[1200] 2xl:w-[1400px] rounded-md ${styles.scrollBar}  overflow-x-auto`}>
-                <TableContainer className={`${styles.scrollBar}`} style={{ width: "100%" }} component={Paper}>
+            <div className={`w-[90vw] lg:w-[1000px] xl:w-[1200] 2xl:w-[1400px] rounded-md ${styles.scrollBar}  overflow-x-auto h-full md:mb-4 xl:mb-8`}>
+                <TableContainer className={`${styles.scrollBar}`} style={{ width: "100%", height: "100%" }} component={Paper}>
                     <Table size="medium" aria-label="My Booking">
                         <TableHead>
                             <TableRow
@@ -147,8 +193,10 @@ export default function All_users() {
                                                 className='text-stone-500 whitespace-nowrap text-[12px]' component="th" scope="row" align="justify">
                                                 {conver_date_formatter(row.createdAt.split("T")[0])}
                                             </TableCell>
-                                            <TableCell style={{ color: "rgb(120 113 108)", fontSize: "12px" }} className='text-stone-500 whitespace-nowrap text-[12px]' component="th" scope="row" align="justify">
-                                                {row._id}
+                                            <TableCell style={{ color: "rgb(120 113 108)", fontSize: "12px" }} component="th" scope="row" align="justify">
+                                                <p onClick={() => edit_user(row._id, true)} className='text-stone-500 whitespace-nowrap text-[12px] hover:underline active:text-stone-300 cursor-pointer select-none'>
+                                                    {row._id}
+                                                </p>
                                             </TableCell>
                                             <TableCell style={{ color: "rgb(120 113 108)", fontSize: "12px" }} className='text-stone-500 capitalize whitespace-nowrap text-[12px]' component="th" scope="row" align="justify">
                                                 {row.name}
@@ -157,15 +205,24 @@ export default function All_users() {
                                             <TableCell style={{ color: "rgb(120 113 108)", fontSize: "12px" }} className='text-stone-500 whitespace-nowrap text-[12px]' align="justify">{row.email}</TableCell>
 
 
-                                            <TableCell style={{ color: "rgb(120 113 108)", fontSize: "12px" }} className='text-stone-500 whitespace-nowrap text-[12px]' align="justify">{row.password}</TableCell>
-
-
                                             <TableCell style={{ fontSize: "12px" }} align="justify">
                                                 <p className={`${row.isAdmin ? "text-green-600" : "text-blue-500"} whitespace-nowrap text-[12px]`}>
                                                     {row.isAdmin ? "Admin" : "User"}
 
                                                 </p>
                                             </TableCell>
+
+
+                                            <TableCell style={{ color: "rgb(120 113 108)", fontSize: "12px" }} className=' whitespace-nowrap' align="justify"
+                                            >
+                                                <button
+                                                    onClick={() => handle_member(row._id, "set_member_role_modal")}
+                                                    className={`text-white font-medium px-[10px] py-[6px] rounded-md select-none  transition-all text-[12px] hover:opacity-[.8] active:opacity-[.6] bg-violet-500`}
+                                                >
+                                                    Edit Role
+                                                </button>
+                                            </TableCell>
+
 
                                             <TableCell style={{ color: "rgb(120 113 108)", fontSize: "12px" }} align="justify">
                                                 <p className='text-stone-500 whitespace-nowrap text-[12px]'>
@@ -214,20 +271,20 @@ export default function All_users() {
                                                 >
                                                     <DeleteIcon />
                                                 </IconButton>
-                                                <IconButton
+
+                                                <button
+                                                    className={`text-white font-medium px-[10px] py-[6px] rounded-md select-none  transition-all text-[12px] hover:opacity-[.8] active:opacity-[.6] bg-blue-500`}
                                                     onClick={() => edit_user(row._id, "delete_booking_modal")}
-                                                    key={index} size='small'
-                                                    variant='outlined'
-                                                    color='primary'
+                                                    key={index}
                                                 >
-                                                    <EditIcon />
-                                                </IconButton>
+                                                    Edit
+                                                </button>
 
                                                 {row.accountStatus ?
                                                     <button
                                                         onClick={() => handle_member(row._id, "block_member_modal")}
                                                         key={index}
-                                                        className='text-white bg-red-500 font-medium px-[10px] py-[6px] rounded-md select-none hover:opacity-[.8] active:opacity-[.6] transition-all text-[12px] mx-2'
+                                                        className='text-white bg-amber-600 font-medium px-[10px] py-[6px] rounded-md select-none hover:opacity-[.8] active:opacity-[.6] transition-all text-[12px] mx-2'
 
                                                     >
                                                         Block
@@ -260,3 +317,28 @@ export default function All_users() {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

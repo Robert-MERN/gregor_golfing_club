@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '@/styles/Home.module.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton, FormControl, Select, FormHelperText, MenuItem } from '@mui/material';
@@ -13,7 +13,8 @@ const Players_booking_content_2 = ({
     bay_field,
     userId,
     selected_range_hour,
-    username,
+    cookieUser,
+    handle_get_all_members_API,
 }) => {
 
     const default_form_state = {
@@ -75,35 +76,7 @@ const Players_booking_content_2 = ({
 
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const errors = {};
-        Object.keys(formState).forEach((fieldName) => {
-            const error = validateField(fieldName, formState[fieldName]);
-            if (error) {
-                errors[fieldName] = error;
-            }
-        });
-        setFormState((prevState) => ({
-            ...prevState,
-            errors,
-        }));
-        if (Object.values(errors).every((error) => !error)) {
-            // Form is valid, submit it
-            const { button_label, ...other } = selected_players;
-            const event = {
-                ...other,
-                title: button_label,
-                start: formatDateToISO(booking_date, formState.startDuration),
-                end: formatDateToISO(booking_date, formState.endDuration),
-                bay_field,
-                userId,
-                username,
-                classNames: "bg-blue-500 text-[14px] border-none px-2 py-1 font-sans hover:opacity-75 cursor-default transition-all",
-            }
-            await handle_next_button(true, event);
-        }
-    };
+
 
     // Function to create a date object with the time set to midnight (00:00:00)
     const getDateWithoutTime = (date) => {
@@ -194,6 +167,43 @@ const Players_booking_content_2 = ({
         set_booking_modal("players_booking")
         setFormState(default_form_state);
     }
+
+    const [member, set_member] = useState(null);
+    useEffect(() => {
+        if (cookieUser.isAdmin) {
+            handle_get_all_members_API(set_member, "single_user", cookieUser.id, userId);
+        }
+    }, [])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const errors = {};
+        Object.keys(formState).forEach((fieldName) => {
+            const error = validateField(fieldName, formState[fieldName]);
+            if (error) {
+                errors[fieldName] = error;
+            }
+        });
+        setFormState((prevState) => ({
+            ...prevState,
+            errors,
+        }));
+        if (Object.values(errors).every((error) => !error)) {
+            // Form is valid, submit it
+            const { button_label, ...other } = selected_players;
+            const event = {
+                ...other,
+                title: button_label,
+                start: formatDateToISO(booking_date, formState.startDuration),
+                end: formatDateToISO(booking_date, formState.endDuration),
+                bay_field,
+                userId,
+                username: member ? member.name : cookieUser.name,
+                classNames: "bg-blue-500 text-[14px] border-none px-2 py-1 font-sans hover:opacity-75 cursor-default transition-all",
+            }
+            await handle_next_button("", event);
+        }
+    };
 
     return (
         <Fade right duration={400}>

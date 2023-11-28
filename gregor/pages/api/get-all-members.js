@@ -26,7 +26,7 @@ export default async function registerUser(req, res) {
 
 
         // Validating a requester status, whther he's an admin?
-        const { id, single_user } = req.query;
+        const { id, single_user, search_keys } = req.query;
         const admin_user = await Users.findById(id);
         if (!admin_user || !admin_user.isAdmin) {
             return res.status(401).json({ success: false, message: "You're not allowed!" });
@@ -47,11 +47,18 @@ export default async function registerUser(req, res) {
         } else {
             users = [];
             const users_with_encryted_passwords = await Users.find().sort({ createdAt: -1 });
-            for (const each_user of users_with_encryted_passwords) {
-                const userObject = each_user.toObject();
-                const password = decrypting_password(userObject.password);
-                users.push({ ...userObject, password });
+            users = users_with_encryted_passwords;
+            if (search_keys) {
+                const search_val = search_keys.trim().toLowerCase();
+                users = users.filter(each_user => each_user.name.toLowerCase().includes(search_val) || each_user.email.toLowerCase().includes(search_val) || each_user._id.toString().includes(search_val))
             }
+
+            // Decrypting passwords
+            // for (const each_user of users_with_encryted_passwords) {
+            //     const userObject = each_user.toObject();
+            //     const password = decrypting_password(userObject.password);
+            //     users.push({ ...userObject, password });
+            // }  
         }
         // sending success response to user
         return res.status(200).json(users);

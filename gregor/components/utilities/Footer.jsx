@@ -42,8 +42,9 @@ const Footer = () => {
         <div className='lg:w-[1200px] w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0' >
           <div className='flex-1 flex flex-col gap-2 lg:pr-8' >
             <div className='w-full flex justify-center'>
-
-              <Image className=' object-contain w-[250px] object-center' alt="full icon" src={full_logo} />
+              <Link href="/ " >
+                <Image className=' object-contain w-[250px] object-center' alt="full icon" src={full_logo} />
+              </Link>
             </div>
 
             <p className='text-[16px] md:text-[17px] text-center 2xl:text-[20px] text-stone-100 font-medium'>We take the work out of connecting with others so you can accomplish more.</p>

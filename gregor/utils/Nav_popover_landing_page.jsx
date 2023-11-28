@@ -26,7 +26,7 @@ const Nav_popover_landing_page = ({ anchorEl, close }) => {
             }}
         >
             <div className='w-[230px] bg-stone-800' >
-                <Link href="/home">
+                <Link href="/">
                     <button onClick={() => { close(); }} className='text-stone-200 text-[12px] flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                         <HomeIcon />
                         Home

@@ -19,6 +19,10 @@ import Block_member_modal from '@/utils/modals/Block_member_modal';
 import Unblock_member_modal from '@/utils/modals/Unblock_member_modal';
 import Renewal_subscription_modal from '@/utils/modals/Renewal_subscription_modal';
 import Account_status_modal from '@/utils/modals/Account_status_modal';
+import Set_member_role_modal from '@/utils/modals/Set_member_role_modal';
+import Restrict_bay_modal from '@/utils/modals/Restrict_bay_modal';
+import Unrestrict_bay_modal from '@/utils/modals/Unrestrict_bay_modal';
+import Bay_restriction_message_modal from '@/utils/modals/Bay_resrtriction_message_modal';
 
 
 
@@ -62,9 +66,13 @@ const Layout = ({ children }) => {
             <Renewal_subscription_modal open={modals} close={() => closeModal("renewal_subscription_modal")} />
             <Account_status_modal open={modals} close={() => closeModal("account_status_modal")} />
             <Unrestrict_slot_modal open={modals} close={() => closeModal("unrestrict_slot_modal")} />
+            <Unrestrict_bay_modal open={modals} close={() => closeModal("unrestrict_bay_modal")} />
             <Subscription_status_modal open={modals} close={() => closeModal("subscription_status_modal")} />
             <Restrict_hours_modal open={modals} close={() => closeModal("restrict_hours_modal")} />
-            <Add_edit_guests_fees_modal open={modals} close={() => closeModal("add_edit_guests_fees_modal")} />
+            <Restrict_bay_modal open={modals} close={() => closeModal("restrict_bay_modal")} />
+            <Add_edit_guests_fees_modal open={modals} />
+            <Set_member_role_modal open={modals} close={() => closeModal("set_member_role_modal")} />
+            <Bay_restriction_message_modal open={modals} close={()=> closeModal("bay_restriction_message_modal")} />
             <Snackbar
                 anchorOrigin={{ vertical: "top", horizontal: "center" }}
                 TransitionComponent={TransitionDown}

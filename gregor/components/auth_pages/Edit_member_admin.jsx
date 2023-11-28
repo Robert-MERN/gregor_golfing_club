@@ -225,7 +225,7 @@ const Edit_user_admin = () => {
 
         <div className={`w-full my-10 lg:my-0 bg-slate-100 h-full flex justify-center px-[0px] lg:px-[20px] lg:pt-0 pt-[20px] rounded-md`} >
             {cookieUser &&
-                <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-5 md:gap-6 p-[20px] mb-6' >
+                <form autoComplete='off' onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-5 md:gap-6 p-[20px] mb-6' >
 
                     <div className='flex flex-col w-full gap-1 justify-center' >
                         <p className='text-[20px] md:text-[30px] font-semibold text-slate-700' >
@@ -354,9 +354,11 @@ const Edit_user_admin = () => {
                             <FormControl
                                 className='w-full'
                                 size="small"
+
                             >
                                 <TextField
-                                    autoComplete='off'
+                                    autoComplete={`off`}
+                                    type="text"
                                     size='small'
                                     className='w-full mt-1 md:mt-2'
                                     name="id"

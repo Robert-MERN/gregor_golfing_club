@@ -20,10 +20,8 @@ export default function Home({ user }) {
         setCookieUser(user);
     }, []);
 
-    console.log(user);
-
     return (
-        <div className={`flex w-screen h-screen gap-3 ${styles.container} ${styles.scrollBar}`} >
+        <div className={`flex w-screen bg-stone-700 h-screen gap-3 ${styles.container} ${styles.scrollBar}`} >
             <Head>
                 <title>Gregor Private Club - GPC Golf</title>
                 <meta name="description" content="Gregor Private Club - GPC Golf" />

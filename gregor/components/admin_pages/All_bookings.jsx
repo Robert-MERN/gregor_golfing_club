@@ -30,18 +30,24 @@ const headers_2 = [
     "Action",
 ]
 
+const headers_3 = [
+    "Bay (field No.)",
+    "Reason",
+    "Action",
+]
+
 export default function All_bookings() {
 
-    const { openSidebar, handle_get_all_user_bookings, all_users_booking_admin_view, cookieUser, set_booking_delete_id, openModal } = useStateContext();
+    const { openSidebar, handle_get_all_user_bookings, all_users_booking_admin_view, cookieUser, set_booking_delete_id, set_restricted_bay_id, all_restricted_bays, handle_get_all_restricted_bays, openModal } = useStateContext();
 
     const [page_content, set_page_content] = useState("all_users_bookings");
     useEffect(() => {
         if (cookieUser && page_content === "all_users_bookings") {
             handle_get_all_user_bookings(cookieUser.id);
-        } else {
-            if (cookieUser && page_content === "all_restricted_slots") {
-                handle_get_all_user_bookings(cookieUser.id, true);
-            }
+        } else if (cookieUser && page_content === "all_restricted_slots") {
+            handle_get_all_user_bookings(cookieUser.id, true);
+        } else if (cookieUser && page_content === "all_restricted_bays") {
+            handle_get_all_restricted_bays(cookieUser.id)
         }
     }, [cookieUser, page_content]);
 
@@ -73,7 +79,11 @@ export default function All_bookings() {
     }
 
     const handle_delete = (id, param) => {
-        set_booking_delete_id(id);
+        if (param === "unrestrict_bay_modal") {
+            set_restricted_bay_id(id)
+        } else {
+            set_booking_delete_id(id);
+        }
         openModal(param);
     }
 
@@ -99,16 +109,22 @@ export default function All_bookings() {
                 </button>
                 <button
                     onClick={() => set_page_content("all_restricted_slots")}
-                    className={`flex-1 py-[10px] hover:opacity-75 md:text-[14px] text-[12px]  font-semibold w-full ${page_content === "all_restricted_slots" ? "bg-[#6CBE45] text-white" : "bg-stone-300 text-stone-600"} transition-all select-none`}
+                    className={`flex-1 py-[10px] hover:opacity-75 md:text-[14px] text-[12px]  font-semibold w-full ${page_content === "all_restricted_slots" ? "bg-[#6CBE45] text-white" : "bg-stone-300 text-stone-600"} transition-all select-none border-x border-gray-50`}
                 >
                     Restricted Slots
+                </button>
+                <button
+                    onClick={() => set_page_content("all_restricted_bays")}
+                    className={`flex-1 py-[10px] hover:opacity-75 md:text-[14px] text-[12px]  font-semibold w-full ${page_content === "all_restricted_bays" ? "bg-[#6CBE45] text-white" : "bg-stone-300 text-stone-600"} transition-all select-none`}
+                >
+                    Restricted Bays
                 </button>
 
             </div>
             {page_content === "all_users_bookings" ?
 
-                <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar}`} >
-                    <TableContainer style={{ width: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
+                <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar} h-full mb-8 md:mb-4 xl:mb-8`} >
+                    <TableContainer style={{ width: "100%", height: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
                         <Table size="medium" aria-label="My Booking">
                             <TableHead>
                                 <TableRow
@@ -122,7 +138,7 @@ export default function All_bookings() {
                                     </TableCell>
                                     {headers.map((header, index) => (
                                         <TableCell
-                                            key={index}
+                                            key={header}
                                             align="center"
                                             style={{ color: "rgb(120 113 108)", fontSize: "12px", fontWeight: 600 }}
                                             className='text-stone-500 font-semibold text-[12px]'
@@ -138,7 +154,7 @@ export default function All_bookings() {
                                     {
                                         all_users_booking_admin_view.map((row, index) => (
                                             <TableRow
-                                                key={index}
+                                                key={row._id}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                 style={{ whiteSpace: 'nowrap' }}
                                             >
@@ -158,7 +174,7 @@ export default function All_bookings() {
                                                 <TableCell align="center">
                                                     <Button
                                                         onClick={() => handle_delete(row._id, "delete_booking_modal")}
-                                                        key={index} size='small'
+                                                        key={row._id} size='small'
                                                         variant='outlined'
                                                         color='error'
                                                     >
@@ -178,73 +194,144 @@ export default function All_bookings() {
                     </TableContainer>
                 </div>
 
-                :
-                <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar}`}>
-                    <TableContainer style={{ width: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
-                        <Table size="medium" aria-label="My Booking">
-                            <TableHead>
-                                <TableRow
-                                    style={{ whiteSpace: 'nowrap' }}
-                                >
-                                    <TableCell
-                                        className='text-stone-500 font-semibold text-[12px]'
-                                        style={{ color: "rgb(120 113 108)", fontSize: "12px", fontWeight: 600 }}
+                : page_content === "all_restricted_slots" ?
+
+                    <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar} h-full mb-8 md:mb-4 xl:mb-8`}>
+                        <TableContainer style={{ width: "100%", height: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
+                            <Table size="medium" aria-label="My Booking">
+                                <TableHead>
+                                    <TableRow
+                                        style={{ whiteSpace: 'nowrap' }}
                                     >
-                                        Date
-                                    </TableCell>
-                                    {headers_2.map((header, index) => (
                                         <TableCell
-                                            key={index}
-                                            align="center"
-                                            style={{ color: "rgb(120 113 108)", fontSize: "12px", fontWeight: 600 }}
                                             className='text-stone-500 font-semibold text-[12px]'
+                                            style={{ color: "rgb(120 113 108)", fontSize: "12px", fontWeight: 600 }}
                                         >
-                                            {header}
+                                            Date
                                         </TableCell>
-                                    ))
-                                    }
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {Boolean(all_users_booking_admin_view.length) &&
-                                    all_users_booking_admin_view.map((row, index) => (
-                                        <TableRow
-                                            key={index}
-                                            style={{ whiteSpace: 'nowrap' }}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
+                                        {headers_2.map((header, index) => (
                                             <TableCell
-                                                style={{ color: "rgb(120 113 108)" }}
-                                                className='text-stone-500 whitespace-nowrap' component="th" scope="row" align="left">
-                                                {conver_date_formatter(row.start.split("T")[0])}
+                                                key={header}
+                                                align="center"
+                                                style={{ color: "rgb(120 113 108)", fontSize: "12px", fontWeight: 600 }}
+                                                className='text-stone-500 font-semibold text-[12px]'
+                                            >
+                                                {header}
                                             </TableCell>
+                                        ))
+                                        }
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {Boolean(all_users_booking_admin_view.length) &&
+                                        all_users_booking_admin_view.map((row, index) => (
+                                            <TableRow
+                                                key={row._id}
+                                                style={{ whiteSpace: 'nowrap' }}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell
+                                                    style={{ color: "rgb(120 113 108)" }}
+                                                    className='text-stone-500 whitespace-nowrap' component="th" scope="row" align="left">
+                                                    {conver_date_formatter(row.start.split("T")[0])}
+                                                </TableCell>
 
-                                            <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.bay_field}</TableCell>
-                                            <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{calculateTotalHours(row.start, row.end)}</TableCell>
-                                            <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.start.split("T")[1]}</TableCell>
-                                            <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.end.split("T")[1]}</TableCell>
-                                            <TableCell align="center">
-                                                <Button
-                                                    onClick={() => handle_delete(row._id, "unrestrict_slot_modal")}
-                                                    key={index} size='small'
-                                                    variant='outlined'
-                                                    color='error'
-                                                >
-                                                    Un-restrict
-                                                </Button>
+                                                <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.bay_field}</TableCell>
+                                                <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{calculateTotalHours(row.start, row.end)}</TableCell>
+                                                <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.start.split("T")[1]}</TableCell>
+                                                <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.end.split("T")[1]}</TableCell>
+                                                <TableCell align="center">
+                                                    <Button
+                                                        onClick={() => handle_delete(row._id, "unrestrict_slot_modal")}
+                                                        key={row._id} size='small'
+                                                        variant='outlined'
+                                                        color='error'
+                                                    >
+                                                        Un-restrict
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                </TableBody>
+                            </Table>
+
+                            {!Boolean(all_users_booking_admin_view.length) &&
+                                <div className='w-full grid place-items-center py-[40px]' >
+                                    <p className='text-stone-400 text-[12px]' >No Restricted Slots</p>
+                                </div>
+                            }
+                        </TableContainer>
+                    </div>
+
+                    :
+
+                    <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar} h-full mb-8 md:mb-4 xl:mb-8`}>
+                        <TableContainer style={{ width: "100%", height: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
+                            <Table size="medium" aria-label="My Booking">
+                                <TableHead>
+                                    <TableRow
+                                        style={{ whiteSpace: 'nowrap' }}
+                                    >
+                                        <TableCell
+                                            className='text-stone-500 font-semibold text-[12px]'
+                                            style={{ color: "rgb(120 113 108)", fontSize: "12px", fontWeight: 600 }}
+                                        >
+                                            Restricted Date
+                                        </TableCell>
+                                        {headers_3.map((header, index) => (
+                                            <TableCell
+                                                key={header}
+                                                align="center"
+                                                style={{ color: "rgb(120 113 108)", fontSize: "12px", fontWeight: 600 }}
+                                                className='text-stone-500 font-semibold text-[12px]'
+                                            >
+                                                {header}
                                             </TableCell>
-                                        </TableRow>
-                                    ))}
-                            </TableBody>
-                        </Table>
+                                        ))
+                                        }
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {Boolean(all_restricted_bays.length) &&
+                                        all_restricted_bays.map((row, index) => (
+                                            <TableRow
+                                                key={row._id}
+                                                style={{ whiteSpace: 'nowrap' }}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell
+                                                    style={{ color: "rgb(120 113 108)" }}
+                                                    className='text-stone-500 whitespace-nowrap' component="th" scope="row" align="left">
+                                                    {conver_date_formatter(row.restricted_date)}
+                                                </TableCell>
 
-                        {!Boolean(all_users_booking_admin_view.length) &&
-                            <div className='w-full grid place-items-center py-[40px]' >
-                                <p className='text-stone-400 text-[12px]' >No Restricted Slots</p>
-                            </div>
-                        }
-                    </TableContainer>
-                </div>
+                                                <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.restricted_bay_field}</TableCell>
+
+                                                <TableCell style={{ color: "rgb(120 113 108)" }} className='text-stone-500 whitespace-nowrap' align="center">{row.note}</TableCell>
+
+
+                                                <TableCell align="center">
+                                                    <Button
+                                                        onClick={() => handle_delete(row._id, "unrestrict_bay_modal")}
+                                                        key={row._id} size='small'
+                                                        variant='outlined'
+                                                        color='error'
+                                                    >
+                                                        Un-restrict
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                </TableBody>
+                            </Table>
+
+                            {!Boolean(all_users_booking_admin_view.length) &&
+                                <div className='w-full grid place-items-center py-[40px]' >
+                                    <p className='text-stone-400 text-[12px]' >No Restricted Slots</p>
+                                </div>
+                            }
+                        </TableContainer>
+                    </div>
 
             }
 

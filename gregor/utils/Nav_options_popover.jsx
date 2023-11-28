@@ -33,14 +33,14 @@ const Nav_options_popover = ({ anchorEl, close }) => {
         >
             <div className='w-[230px] bg-stone-800' >
                 <Link href="/home">
-                    <button onClick={() => { close(); }} className='text-stone-200 text-[14px] flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
+                    <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                         <SportsGolfIcon />
                         Book Your Golfing Bay
                     </button>
                 </Link>
 
                 <Link href="/home/my-bookings">
-                    <button onClick={() => { close(); }} className='text-stone-200 text-[14px] flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
+                    <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                         <GolfCourseIcon />
                         See your booking(s)
                     </button>
@@ -50,14 +50,14 @@ const Nav_options_popover = ({ anchorEl, close }) => {
                     cookieUser.isAdmin &&
                     <>
                         <Link href="/admin/golfing-bays-bookings-admin">
-                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
+                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                                 <DeliveryDiningIcon />
                                 Golfing bays - admin
                             </button>
                         </Link>
 
                         <Link href="/admin/all-bookings">
-                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
+                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                                 <BallotIcon />
                                 All bookings - admin
                             </button>
@@ -65,7 +65,7 @@ const Nav_options_popover = ({ anchorEl, close }) => {
 
 
                         <Link href="/admin/all-members">
-                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
+                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                                 <GroupsIcon />
                                 All members - admin
                             </button>
@@ -73,7 +73,7 @@ const Nav_options_popover = ({ anchorEl, close }) => {
 
 
                         <Link href="/admin/add-new-member">
-                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
+                            <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[10px] hover:bg-stone-600 transition-all w-full'>
                                 <PersonAddIcon />
                                 Add member - admin
                             </button>
@@ -83,7 +83,7 @@ const Nav_options_popover = ({ anchorEl, close }) => {
                 }
 
                 <Link href="/subscription">
-                    <button onClick={() => { close(); }} className='text-stone-200 text-[14px] flex items-center gap-2 cursor-pointer select-none p-[8px] hover:bg-stone-600 transition-all w-full'>
+                    <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[8px] hover:bg-stone-600 transition-all w-full'>
                         <CardMembershipIcon className='scale-[.8]' />
                         Become a member
                     </button>

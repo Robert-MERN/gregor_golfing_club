@@ -38,6 +38,7 @@ export const ContextProvider = ({ children }) => {
         subscription_status_modal: false,
         add_edit_guests_fees_modal: false,
         restrict_hours_modal: false,
+        restrict_bay_modal: false,
         delete_booking_modal: false,
         delete_member_modal: false,
         renewal_subscription_modal: false,
@@ -45,6 +46,9 @@ export const ContextProvider = ({ children }) => {
         block_member_modal: false,
         account_status_modal: false,
         unrestrict_slot_modal: false,
+        unrestrict_bay_modal: false,
+        set_member_role_modal: false,
+        bay_restriction_message_modal: false,
     };
     const [modals, setModals] = useState(defaultModals);
     const openModal = (key) => {
@@ -142,14 +146,14 @@ export const ContextProvider = ({ children }) => {
     }
 
 
-    // getting al members - Admin
+    // getting all members - Admin
     const [all_members, set_all_members] = useState([])
-    const handle_get_all_members_API = async (set_members, single_user, id, userId, set_members_2) => {
+    const handle_get_all_members_API = async (set_members, single_user, id, userId, set_members_2, search_keys) => {
         set_members([]);
         if (set_members_2) set_members_2([]);
         setAPIloading(true)
         try {
-            const res = await axios.post(`/api/get-all-members?single_user=${single_user}&id=${id}`, { id: userId });
+            const res = await axios.post(`/api/get-all-members?single_user=${single_user}&id=${id}&search_keys=${search_keys || ""}`, { id: userId });
             set_members(res.data);
             if (set_members_2) set_members_2(res.data);
         } catch (err) {
@@ -379,6 +383,70 @@ export const ContextProvider = ({ children }) => {
     }
 
 
+    // Restricting Bay API
+    const handle_restrict_bay = async (data, close_modal) => {
+        setAPIloading(true)
+        try {
+            const res = await axios.post(`/api/restrict_bay?userId=${data.userId}`, data);
+            if(!res.data.success){
+                toast.warn(res.data.message, { ...toastConfig, toastId: "restrictedBayFailure" });
+            } else {
+                toast.info(res.data.message, { ...toastConfig, toastId: "restrictedBaySuccessful" });
+                close_modal();
+            }
+        } catch (err) {
+            toast.error(err.response.data.message, { ...toastConfig, toastId: "restrictedBayFailed" });
+            close_modal();
+        } finally {
+            setAPIloading(false);
+        }
+    }
+
+    // Getting All Restricted Bays
+    const [all_restricted_bays, set_all_restricted_bays] = useState([]);
+    const handle_get_all_restricted_bays = async (id) => {
+        setAPIloading(true)
+        try {
+            const res = await axios.get(`/api/get_all_restricted_bay?userId=${id}`);
+            set_all_restricted_bays(res.data);
+        } catch (err) {
+            toast.error(err.response.data.message, { ...toastConfig, toastId: "restrictedBayFailed" });
+        } finally {
+            setAPIloading(false);
+        }
+    }
+
+    // Deleting Restricted Bay API
+    const [restricted_bay_id, set_restricted_bay_id] = useState("")
+    const handle_delete_restricted_bay = async (id, userId) => {
+        setAPIloading(true)
+        try {
+            const res = await axios.get(`/api/delete_restricted_bay?id=${id}&userId=${userId}`);
+            toast.info(res.data.message, { ...toastConfig, toastId: "deleteRestrictedBaySuccessful" });
+            handle_get_all_restricted_bays(userId);
+        } catch (err) {
+            toast.error(err.response.data.message, { ...toastConfig, toastId: "deleteRestrictedBayFailed" });
+        } finally {
+            setAPIloading(false);
+        }
+    }
+
+    const [validate_bay, set_validate_bay] = useState("")
+    const handle_validate_restricted_bay = async (bay_field, date) => {
+        setAPIloading(true)
+        try {
+            const res = await axios.get(`/api/validate_bay?bay_field=${bay_field}&date=${date}`);
+            if (!res.data.success) {
+                set_validate_bay(res.data.restricted_bay);
+                openModal("bay_restriction_message_modal");
+            }
+        } catch (err) {
+            toast.error(err.response.data.message, { ...toastConfig, toastId: "restrictedBayFailed" });
+        } finally {
+            setAPIloading(false);
+        }
+    }
+
     return (
         <StateContext.Provider
             value={{
@@ -407,9 +475,12 @@ export const ContextProvider = ({ children }) => {
                 handle_create_booking, handle_get_all_bookings,
                 set_booked_events, booking_date, set_booking_date,
                 bay_field, set_bay_field, snackbar_alert, set_snackbar_alert,
-                bay_field_for_admin, set_bay_field_for_admin, booking_date_for_admin, set_booking_date_for_admin
+                bay_field_for_admin, set_bay_field_for_admin, booking_date_for_admin, set_booking_date_for_admin,
 
-
+                handle_restrict_bay, handle_get_all_restricted_bays,
+                all_restricted_bays, set_all_restricted_bays, handle_delete_restricted_bay, restricted_bay_id,
+                set_restricted_bay_id, handle_validate_restricted_bay,
+                validate_bay, set_validate_bay
 
             }}
         >

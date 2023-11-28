@@ -16,6 +16,7 @@ import text_logo from "@/public/images/text_logo_white.png"
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import GroupsIcon from '@mui/icons-material/Groups';
 import InfoIcon from '@mui/icons-material/Info';
+import Link from "next/link";
 
 
 const Sidebar = () => {
@@ -149,11 +150,12 @@ const Sidebar = () => {
     return (
         <>
             <Fade left duration={300} >
-                <div className={`xl:flex-[1.5] 2xl:flex-[1] bg-[#1F2822] h-screen overflow-y-auto top-0 bottom-0 px-[20px] pb-[20px] shadow-2xl transition-all duration-300 delay-400 lg:block hidden  ${openSidebar ? "translate-x-0 " : "-translate-x-full "} ${styles.scrollBar}`} >
+                <div className={`xl:flex-[1.5] 2xl:flex-[1] bg-[#1F2822] h-screen overflow-y-auto top-0 bottom-0 px-[20px] pb-[20px] shadow-2xl transition-all duration-300 delay-400 xl:block hidden  ${openSidebar ? "translate-x-0 " : "-translate-x-full "} ${styles.scrollBar}`} >
                     <div className={` flex items-center gap-4 select-none`}>
+                        <Link href="/">
 
-                        <Image className='select-none' alt="logo_image" src={text_logo} />
-
+                            <Image className='select-none' alt="logo_image" src={text_logo} />
+                        </Link>
                     </div>
                     {cookieUser &&
                         cookieUser.isAdmin ?
@@ -162,14 +164,17 @@ const Sidebar = () => {
                                 <React.Fragment key={index}>
                                     <p className='text-[16px] text-slate-400 my-3 uppercase select-none'>{each.title}</p>
                                     {each.navLinks.map((i, index) => (
-                                        <button
-                                            onClick={() => { switchSidebarTabs(i.name); navigate_to(i.link) }}
-                                            key={index}
-                                            className={`whitespace-nowrap py-[10px] text-[14px] hover:bg-lime-500 hover:text-white w-full rounded-md select-none my-3 flex gap-3 px-4 items-center transition-all ${page_url === i.link ? "text-white bg-[#6CBE45]" : "text-slate-200"}`}
-                                        >
-                                            {i.icon}
-                                            {i.name}
-                                        </button>
+                                        <Link href={i.link} >
+                                            <button
+                                                onClick={() => { switchSidebarTabs(i.name); }}
+                                                key={index}
+                                                className={`whitespace-nowrap py-[10px] text-[14px] hover:bg-lime-500 hover:text-white w-full rounded-md select-none my-3 flex gap-3 px-4 items-center transition-all ${page_url === i.link ? "text-white bg-[#6CBE45]" : "text-slate-200"}`}
+                                            >
+                                                {i.icon}
+                                                {i.name}
+                                            </button>
+                                        </Link>
+
                                     ))}
                                 </React.Fragment>
                             ))
@@ -180,14 +185,17 @@ const Sidebar = () => {
                                 <React.Fragment key={index}>
                                     <p className='text-[16px] text-slate-400 bg-stone-300 my-3 uppercase'>{each.title}</p>
                                     {each.navLinks.map((i, index) => (
-                                        <button
-                                            onClick={() => { switchSidebarTabs(i.name); navigate_to(i.link) }}
-                                            key={index}
-                                            className={`whitespace-nowrap py-[10px] text-[14px] hover:bg-lime-500 hover:text-white w-full rounded-md select-none my-3 flex gap-3 px-4 items-center transition-all ${page_url === i.link ? "text-white bg-[#6CBE45]" : "text-slate-200"}`}
-                                        >
-                                            {i.icon}
-                                            {i.name}
-                                        </button>
+                                        <Link href={i.link} >
+                                            <button
+                                                onClick={() => { switchSidebarTabs(i.name); }}
+                                                key={index}
+                                                className={`whitespace-nowrap py-[10px] text-[14px] hover:bg-lime-500 hover:text-white w-full rounded-md select-none my-3 flex gap-3 px-4 items-center transition-all ${page_url === i.link ? "text-white bg-[#6CBE45]" : "text-slate-200"}`}
+                                            >
+                                                {i.icon}
+                                                {i.name}
+                                            </button>
+                                        </Link>
+
                                     ))}
                                 </React.Fragment>
                             ))

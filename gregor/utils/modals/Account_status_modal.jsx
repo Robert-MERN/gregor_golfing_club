@@ -21,10 +21,11 @@ const Account_status_modal = ({ open, close }) => {
                     </IconButton>
                 </div>
 
-
                 <p className='text-[13px] md:text-[16px] text-stone-600 font-medium mt-4' >
                     {account_status_message}
                 </p>
+
+
 
                 <div className='w-full flex justify-end' >
                     <button onClick={close} className='text-[12px] md:text-[15px] text-stone-600 px-4 py-[6px] rounded-md hover:bg-stone-300 transition-all' >Close</button>

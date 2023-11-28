@@ -17,7 +17,6 @@ const Navbar = () => {
 
   const [showNavBG, setShowNavBG] = useState(false);
   const controlNavbar = () => {
-    console.log(window.scrollY)
     if (window.scrollY < 100) {
       setShowNavBG(true);
     } else {
@@ -51,7 +50,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className='w-full justify-end gap-2 md:gap-6 items-center flex transition-all' >
-            <Link href="/home" >
+            <Link href="/" >
               <button className='text-[12px] md:text-[15px] text-white font-semibold whitespace-nowrap hidden md:block' >Home</button>
             </Link>
             <Link href="/about" >

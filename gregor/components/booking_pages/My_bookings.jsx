@@ -75,8 +75,8 @@ export default function My_bookings() {
     return (
         <div className={`w-full h-[calc(100vh-60px)] flex flex-col items-center overflow-y-auto ${openSidebar ? "px-[20px] md:px-[40px]" : "px-[80px]"} pt-24 lg:pt-6 transition-all duration-300`}>
 
-            <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar}`} >
-                <TableContainer style={{ width: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
+            <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar} h-full mb-8 md:mb-4 xl:mb-8`} >
+                <TableContainer style={{ width: "100%", height: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
                     <Table size="medium" aria-label="My Booking">
                         <TableHead>
                             <TableRow

@@ -40,7 +40,6 @@ const Add_edit_guests_fees_modal = ({ open, close }) => {
 
     };
 
-    console.log(fees_structure);
 
 
     const handle_submit = async (e) => {
@@ -51,7 +50,7 @@ const Add_edit_guests_fees_modal = ({ open, close }) => {
 
                 await handle_update_guests_fees(cookieUser.id, fees_structure, "create");
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
         }
         handleClose()

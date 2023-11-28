@@ -9,6 +9,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import useStateContext from '@/context/ContextProvider';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import HourglassDisabledIcon from '@mui/icons-material/HourglassDisabled';
+import { TbGolfOff } from "react-icons/tb";
 
 const Golfing_bays_bookings_admin = () => {
 
@@ -148,24 +149,10 @@ const Golfing_bays_bookings_admin = () => {
   return (
     <div className={`h-[calc(100vh-60px)] overflow-y-scroll px-[10px] lg:px-[30px] relative pt-[100px] lg:pt-[30px] pb-[40px] lg:pb-[120px] ${styles.scrollBar}`} >
 
-      <div className='w-[90vw]  md:w-full rounded-t-md flex items-center mb-4 overflow-hidden'>
-        <button
-          onClick={handle_bay_select("bay-1")}
-          className={`flex-1 hover:opacity-75 border-stone-200 py-[10px] md:text-[14px] text-[12px] font-semibold w-full ${bay_field_for_admin === "bay-1" ? "bg-[#6CBE45] text-white" : "bg-stone-300 text-stone-600"} transition-all`}
-        >
-          Bay-1
-        </button>
-        <button
-          onClick={handle_bay_select("bay-2")}
-          className={`flex-1 py-[10px] hover:opacity-75 md:text-[14px] text-[12px]  font-semibold w-full ${bay_field_for_admin === "bay-2" ? "bg-[#6CBE45] text-white" : "bg-stone-300 text-stone-600"} transition-all select-none`}
-        >
-          Bay-2
-        </button>
-
-      </div>
 
 
-      <div className='w-[90vw] md:w-full flex justify-between items-center mb-6 md:mb-0' >
+
+      <div className='w-[90vw] md:w-full flex justify-between items-center mb-4' >
 
         <div className='w-fit z-10 relative' >
           <label
@@ -229,9 +216,8 @@ const Golfing_bays_bookings_admin = () => {
 
       </div>
 
-      <div
-        className='relative w-[90vw] flex md:hidden justify-between items-center'
-      >
+
+      <div className='relative w-[90vw] flex md:hidden justify-between items-center mb-4' >
         <div className='flex justify-between w-full gap-5' >
           <button
             onClick={() => openModal("add_edit_guests_fees_modal")}
@@ -249,6 +235,33 @@ const Golfing_bays_bookings_admin = () => {
             Restrict Hours
           </button>
         </div>
+      </div>
+
+
+      <div className='w-[90vw] md:w-full flex justify-end items-center mb-4'>
+
+
+        <button onClick={() => openModal("restrict_bay_modal")} className='bg-red-600 text-slate-100 text-[13px] md:text-[15px] px-[30px] py-[6px] rounded-md hover:opacity-80 transition-all flex items-center gap-2' >
+          <TbGolfOff className='text-[18px]' />
+          Restrict Bay
+        </button>
+
+      </div>
+
+      <div className='w-[90vw]  md:w-full rounded-t-md flex items-center mb-4 overflow-hidden'>
+        <button
+          onClick={handle_bay_select("bay-1")}
+          className={`flex-1 hover:opacity-75 border-stone-200 py-[10px] md:text-[14px] text-[12px] font-semibold w-full ${bay_field_for_admin === "bay-1" ? "bg-[#6CBE45] text-white" : "bg-stone-300 text-stone-600"} transition-all`}
+        >
+          Bay-1
+        </button>
+        <button
+          onClick={handle_bay_select("bay-2")}
+          className={`flex-1 py-[10px] hover:opacity-75 md:text-[14px] text-[12px]  font-semibold w-full ${bay_field_for_admin === "bay-2" ? "bg-[#6CBE45] text-white" : "bg-stone-300 text-stone-600"} transition-all select-none`}
+        >
+          Bay-2
+        </button>
+
       </div>
 
       <div className='rounded-md overflow-hidden w-[90vw] md:w-full' >

@@ -119,7 +119,12 @@ const About = ({ user }) => {
                 <p className='text-[13px] lg:text-[15px] text-stone-400 lg:w-[750px] text-center mt-3 transition-all' > The Gregor, is a premium indoor golf and private member club experience. The club offers two exceptional AboutGOLF™ (aG) curved enclosures accessible to members 24 hours a day 7 days a week.</p>
                 <p className='text-[13px] lg:text-[15px] text-stone-400 lg:w-[750px] text-center mt-3 transition-all' >It is our goal to enhance member lifestyle and encourage social interaction. We do this by providing a reserved relaxed setting, while promoting physical activity in our cutting-edge indoor golf simulators.
                 </p>
-                <iframe src="https://momento360.com/e/u/821fb73b23f24fc184e4d5d505c68543?utm_campaign=embed&utm_source=other&heading=325.3&pitch=-5.8&field-of-view=75&size=medium&display-plan=true" frameborder="0" className={`mt-12 ${user ? "lg:w-[900px]" : "lg:w-[1100px]"} w-full h-[200px] md:h-[250px]`}></iframe>
+                <iframe
+                    allowfullscreen="true"
+                    src="https://momento360.com/e/u/567b86657a844c8385446eace4988b3e?utm_campaign=embed&utm_source=other&heading=370.31&pitch=-1.74&field-of-view=92&size=medium&display-plan=true"
+                    frameborder="0"
+                    className={`mt-12 ${user ? "lg:w-[900px]" : "lg:w-[1100px]"} w-full h-[200px] md:h-[250px]`}
+                ></iframe>
             </section>
 
 
@@ -334,18 +339,16 @@ const About = ({ user }) => {
 
             {/* section-5 */}
             <section className='mt-14 lg:mt-28' >
-                <Fade right delay={200}>
-                    <div className={`w-full md:w-[650px] ${user ? "lg:w-[900px] mb-[50px]" : "lg:w-[1100px]"} h-[400px] mt-16 lg:mt-0 p-0 md:p-12 lg:p-0`} >
-                        <iframe
-                            className='w-full h-full rounded-md'
-                            frameBorder="0"
-                            style={{ border: 0 }}
-                            src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${location}&zoom=12`}
+                <div className={`w-full md:w-[650px] ${user ? "lg:w-[900px] mb-[50px]" : "lg:w-[1100px]"} h-[400px] mt-16 lg:mt-0 p-0 md:p-12 lg:p-0`} >
+                    <iframe
+                        className='w-full h-full rounded-md'
+                        frameBorder="0"
+                        style={{ border: 0 }}
+                        src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${location}&zoom=12`}
 
-                        ></iframe>
+                    ></iframe>
 
-                    </div>
-                </Fade>
+                </div>
             </section>
 
             {!user &&

@@ -70,11 +70,16 @@ const Players_booking_content_1 = ({
 
                 <div>
 
+
+                    <p className='text-[15px] md:text-[17px] text-stone-600 font-bold mb-1' >
+                        Select Date
+                    </p>
+
                     <div className='flex flex-col flex-1 mb-4'>
                         <div className='w-fit' >
                             <label
                                 htmlFor="date-picker-modal"
-                                className='text-[16px] cursor-pointer text-stone-500 font-semibold transition-all select-none'
+                                className='text-[15px] cursor-pointer text-stone-500 font-semibold transition-all select-none'
                             >
                                 {new Date(booking_date).toLocaleDateString("en-US", {
                                     year: 'numeric',
@@ -97,7 +102,7 @@ const Players_booking_content_1 = ({
 
 
                     <p className='text-[15px] md:text-[17px] text-stone-600 font-bold' >
-                        Select Players
+                        Select Playing Time
                     </p>
 
                     <div className='w-full flex items-center mt-3 md:mt-4 gap-4' >
@@ -147,7 +152,7 @@ const Players_booking_content_1 = ({
                         </button>
                         <button
                             disabled={!selected_players}
-                            onClick={() => handle_next_button(false)} className={`px-4 py-[6px] rounded-md text-white text-[12px] md:text-[15px] ${selected_players ? "bg-[#6CBE45] hover:opacity-75" : "bg-stone-300"}`} >Next</button>
+                            onClick={() => handle_next_button("user")} className={`px-4 py-[6px] rounded-md text-white text-[12px] md:text-[15px] ${selected_players ? "bg-[#6CBE45] hover:opacity-75" : "bg-stone-300"}`} >Next</button>
                     </div>
                 </div>
             </div>

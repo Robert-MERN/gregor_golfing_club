@@ -10,7 +10,7 @@ import useStateContext from '@/context/ContextProvider';
 
 const Golfing_bays_bookings = () => {
 
-    const { openModal, booked_events, booking_date, set_booking_date, bay_field, set_bay_field, handle_get_all_bookings, cookieUser, handle_get_account_status } = useStateContext()
+    const { openModal, booked_events, booking_date, set_booking_date, bay_field, set_bay_field, handle_get_all_bookings, cookieUser, handle_get_account_status, handle_validate_restricted_bay } = useStateContext()
 
     const handle_bay_select = (param) => () => {
         set_bay_field(param);
@@ -129,7 +129,7 @@ const Golfing_bays_bookings = () => {
                 // slotElement.style.borderColor = 'rgb(87 83 78)';
             });
         }
-        
+
         const resourceLabelElements = document.querySelectorAll('.fc-col-header-cell');
         if (resourceLabelElements) {
             resourceLabelElements.forEach((resourceLabelElement) => {
@@ -148,27 +148,19 @@ const Golfing_bays_bookings = () => {
         }
     }, [cookieUser]);
 
+    // validating bay restriction
+    useEffect(() => {
+        handle_validate_restricted_bay(bay_field, booking_date.toISOString());
+    }, [bay_field, booking_date])
+
+
     return (
         <div className={`h-[calc(100vh-60px)] overflow-y-scroll px-[10px] lg:px-[30px] relative pt-[100px] lg:pt-[30px] pb-[40px] lg:pb-[120px] ${styles.scrollBar}`} >
 
-            <div className='w-[90vw]  md:w-full rounded-t-md  flex items-center mb-4 overflow-hidden'>
-                <button
-                    onClick={handle_bay_select("bay-1")}
-                    className={`flex-1 hover:opacity-75 py-[10px] md:text-[14px] text-[12px] font-semibold w-full ${bay_field === "bay-1" ? "bg-[#6CBE45] text-white" : "bg-stone-200 text-stone-600"} transition-all`}
-                >
-                    Bay-1
-                </button>
-                <button
-                    onClick={handle_bay_select("bay-2")}
-                    className={`flex-1 py-[10px] hover:opacity-75 md:text-[14px] text-[12px]  font-semibold w-full ${bay_field === "bay-2" ? "bg-[#6CBE45] text-white" : "bg-stone-200 text-stone-600"} transition-all select-none`}
-                >
-                    Bay-2
-                </button>
-
-            </div>
 
 
-            <div className='w-[90vw] md:w-full flex justify-between items-center' >
+
+            <div className='w-[90vw] md:w-full flex justify-between items-center mb-4' >
                 <div className='w-fit z-10 relative' >
                     <label
                         className='text-[20px] lg:text-[28px] cursor-pointer text-stone-200 font-semibold transition-all w-fit select-none'
@@ -214,6 +206,22 @@ const Golfing_bays_bookings = () => {
 
             </div>
 
+            <div className='w-[90vw]  md:w-full rounded-t-md  flex items-center mb-4 overflow-hidden'>
+                <button
+                    onClick={handle_bay_select("bay-1")}
+                    className={`flex-1 hover:opacity-75 py-[10px] md:text-[14px] text-[12px] font-semibold w-full ${bay_field === "bay-1" ? "bg-[#6CBE45] text-white" : "bg-stone-200 text-stone-600"} transition-all`}
+                >
+                    Bay-1
+                </button>
+                <button
+                    onClick={handle_bay_select("bay-2")}
+                    className={`flex-1 py-[10px] hover:opacity-75 md:text-[14px] text-[12px]  font-semibold w-full ${bay_field === "bay-2" ? "bg-[#6CBE45] text-white" : "bg-stone-200 text-stone-600"} transition-all select-none`}
+                >
+                    Bay-2
+                </button>
+
+            </div>
+
             <div className='rounded-md overflow-hidden w-[90vw] md:w-full' >
                 <FullCalendar
                     ref={calendarRef}
@@ -234,7 +242,7 @@ const Golfing_bays_bookings = () => {
                         end: ""
                     }}
                     height={855}
-                style={{borderColor: "red"}}
+                    style={{ borderColor: "red" }}
 
                 />
 
