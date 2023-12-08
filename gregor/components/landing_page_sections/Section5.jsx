@@ -7,10 +7,14 @@ import FormControl from '@mui/material/FormControl';
 import { FormHelperText } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import SubjectIcon from '@mui/icons-material/Subject';
+import useStateContext from '@/context/ContextProvider';
 
 
 const Section5 = () => {
-    const [formState, setFormState] = useState({
+
+    const { handle_sending_mail } = useStateContext();
+
+    const default_form_state = {
         email: '',
         fullName: '',
         subject: '',
@@ -21,7 +25,8 @@ const Section5 = () => {
             subject: '',
             message: '',
         },
-    });
+    }
+    const [formState, setFormState] = useState(default_form_state);
     const validateField = (fieldName, value) => {
         let error = '';
         switch (fieldName) {
@@ -92,8 +97,7 @@ const Section5 = () => {
             errors,
         }));
         if (Object.values(errors).every((error) => !error)) {
-            // Form is valid, submit it
-            // ...
+            handle_sending_mail(formState, () => setFormState(default_form_state));
 
         }
     }
@@ -106,7 +110,7 @@ const Section5 = () => {
         <div className='flex justify-center mb-14 lg:mb-28' >
             <div className='w-full lg:w-[1200px] flex flex-col items-center' >
                 <Fade right long >
-                    <h1 className={`w-full lg:w-[700px] text-stone-100 text-[28px] md:text-[34px] lg:text-[44px] leading-tight lg:leading-[60px] font-bold whitespace-normal text-center mb-8`} >
+                    <h1 className={`w-full lg:w-[700px] xl:w-[900px] text-stone-100 text-[28px] md:text-[34px] lg:text-[44px] leading-tight lg:leading-[60px] font-bold whitespace-normal text-center mb-10`} >
                         Convenient for Your Time, Not Ours
                     </h1>
                 </Fade>
@@ -114,7 +118,7 @@ const Section5 = () => {
                 <div className='flex flex-col lg:flex-row w-full' >
                     <Fade left>
                         <div className='flex-1 lg:pr-20 flex flex-col justify-center'>
-                            <form onSubmit={handleSubmit} className='w-full h-full bg-stone-100 rounded-xl px-[10px] py-4 md:p-6 flex flex-col gap-4' >
+                            <form onSubmit={handleSubmit} className='w-full h-full bg-stone-100 rounded-sm px-[10px] py-4 md:p-6 flex flex-col gap-4' >
                                 <FormControl size="small">
                                     <OutlinedInput
                                         placeholder='Full Name*'
@@ -195,7 +199,7 @@ const Section5 = () => {
                     <Fade right delay={200}>
                         <div className='flex-1 mt-16 lg:mt-0 p-0 md:p-12 lg:p-0' >
                             <iframe
-                                className='w-full h-full rounded-md'
+                                className='w-full h-full rounded-sm'
                                 frameBorder="0"
                                 style={{ border: 0 }}
                                 src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${location}&zoom=12`}

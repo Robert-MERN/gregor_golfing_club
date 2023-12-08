@@ -11,9 +11,8 @@ module.exports = {
 
 
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+
+        "golf-wall": "url(/images/golf-wall.jpg)"
       },
       backgroundColor: {
         glare: "rgba(255, 255, 255, 0.15)",

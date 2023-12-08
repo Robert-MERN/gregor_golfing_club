@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import Footer from '../utilities/Footer';
 import styles from '@/styles/Home.module.css';
 import useStateContext from '@/context/ContextProvider'
@@ -30,10 +30,25 @@ import pic17 from "@/public/images/pic17.png"
 import Image from 'next/image';
 
 const About = ({ user }) => {
-    const { openSidebar } = useStateContext();
+    const { openSidebar, set_show_navbar_BG } = useStateContext();
 
+
+    const controlNavbar = () => {
+        const scrollVal = document.getElementById("about-page").scrollTop;
+        if (scrollVal < 100) {
+            set_show_navbar_BG(false);
+        } else {
+            set_show_navbar_BG(true);
+
+        }
+    }
+    useEffect(() => {
+        controlNavbar();
+    }, [])
 
     const slideRef = useRef();
+    const slideRef2 = useRef();
+
     const slide = [
         { img: pic1, },
         { img: pic2 },
@@ -69,6 +84,24 @@ const About = ({ user }) => {
 
         )
     }
+
+
+    const PrevBtn2 = () => {
+        return (
+            <button onClick={() => slideRef2.current.slickPrev()} style={{ left: "40px", top: "50%", transform: "translate(-50%, -50%)" }} className='text-white absolute h-[40px] md:h-[50px]  w-[40px] md:w-[50px] rounded-full md:w-50 grid place-items-center  bg-black-trans hover:bg-glare transition-all' >
+                <NavigateBeforeIcon />
+            </button>
+        )
+    }
+    const NextBtn2 = () => {
+        return (
+            <button onClick={() => slideRef2.current.slickNext()} style={{ right: "0", top: "50%", transform: "translate(-50%, -50%)" }} className='text-white absolute h-[40px] md:h-[50px] w-[40px] md:w-[50px] rounded-full md:w-50 grid place-items-center  bg-black-trans hover:bg-glare transition-all' >
+                <NavigateNextIcon />
+            </button>
+
+        )
+    }
+
     const Btn = () => {
         return (
             <button className='hidden' >click</button>
@@ -76,7 +109,7 @@ const About = ({ user }) => {
     }
     const settings = {
         infinite: true,
-        speed: 500,
+        speed: 1200,
         slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
@@ -110,8 +143,10 @@ const About = ({ user }) => {
     const location = '169w Clarkston Rd, Lake Orion, MI 48362, USA';
 
 
+
+
     return (
-        <div className={`${styles.scrollBar} ${user ? "h-[calc(100vh-60px)] lg:pt-6 pt-24" : "h-screen pt-[100px]"} flex flex-col items-center  px-[20px]  ${openSidebar ? "lg:px-[80px]" : "lg:px-[120px]"} overflow-y-auto  transition-all duration-300`} >
+        <div onScroll={controlNavbar} id="about-page" className={`${styles.scrollBar} ${user ? "h-[calc(100vh-60px)] lg:pt-6 pt-24" : "h-screen pt-[100px]"} flex flex-col items-center  px-[20px]  ${openSidebar ? "lg:px-[40px]" : "lg:px-[120px]"} overflow-y-auto  transition-all duration-300`} >
 
             {/* section-1 */}
             <section className='flex flex-col items-center w-full' id="section-1">
@@ -123,19 +158,29 @@ const About = ({ user }) => {
                     allowfullscreen="true"
                     src="https://momento360.com/e/u/567b86657a844c8385446eace4988b3e?utm_campaign=embed&utm_source=other&heading=370.31&pitch=-1.74&field-of-view=92&size=medium&display-plan=true"
                     frameborder="0"
-                    className={`mt-12 ${user ? "lg:w-[900px]" : "lg:w-[1100px]"} w-full h-[200px] md:h-[250px]`}
+                    height="350px"
+                    className={`mt-12 ${user ? "xl:w-[1000px]" : "lg:w-[1100px]"} w-full `}
                 ></iframe>
             </section>
 
 
             {/* section-2 */}
-            <section className='mt-24 flex flex-col items-center' id="section-2">
-                <h1 className="text-stone-100 text-[20px] lg:text-[28px] font-bold text-center mb-1 lg:w-[750px] transition-all" >The Technology</h1>
-                <p className='text-[13px] lg:text-[15px] text-stone-400 lg:w-[750px] text-center mt-3 transition-all' >
+            <section className='mt-24 flex flex-col items-center relative pt-[40px] xl:px-[30px] px-[20px]' id="section-2">
+
+                <video className="absolute top-0 left-0 w-full h-full object-cover" autoPlay muted loop playsInline>
+                    <source src="/images/about.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div className='absolute flex justify-center inset-0 bg-[#1F2822] opacity-[.50]' >
+                </div>
+
+
+                <h1 className="text-stone-100 text-[20px] lg:text-[28px] font-bold text-center mb-1 lg:w-[750px] transition-all z-10" >The Technology</h1>
+                <p className='text-[13px] lg:text-[15px] text-stone-400 lg:w-[750px] text-center mt-3 transition-all z-10' >
                     Every ag sim has 3trak® technology that measures the 3d location of a golf ball with stereo vision (multiple cameras) in the first few feet of flight. these high-performance cameras use proprietary technology for tracking golf balls traveling in excess of 220 mph just as well as short putts rolling at 2 mph.
                 </p>
 
-                <div id="info-cards-container" className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center place-content-center gap-8 mt-16'>
+                <div id="info-cards-container" className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center place-content-center gap-5 mt-16 z-10 mb-[60px]'>
 
                     {/* card-1 */}
                     <div id="card-1" className={`w-full ${user ? "md:w-[300px] px-5" : "md:w-[350px] px-7"} rounded-md py-6  bg-stone-50 flex flex-col gap-4 h-[400px] md:h-[550px]`} >
@@ -227,7 +272,7 @@ const About = ({ user }) => {
             {/* section-3 */}
             <section className='flex justify-center mt-28' >
 
-                <div className={`flex flex-col items-center ${user ? "lg:w-[900px]" : "lg:w-[1100px]"} w-full`} >
+                <div className={`flex flex-col items-center ${user ? "xl:w-[1000px]" : "lg:w-[1100px]"} w-full`} >
 
                     <div className='flex flex-col lg:flex-row w-full gap-8' >
 
@@ -299,9 +344,9 @@ const About = ({ user }) => {
                     90+ GAMES AND COURSES
                 </h1>
 
-                <div className={`w-[300px] md:w-[650px] ${user ? "lg:w-[900px]" : "lg:w-[1100px]"} mt-14 relative`} >
+                <div className={`w-[300px] md:w-[650px] ${user ? "xl:w-[900px]" : "lg:w-[1100px]"} mt-14 relative`} >
 
-                    <Slider ref={slideRef} autoplaySpeed={300} autoplay={true} {...settings} >
+                    <Slider ref={slideRef} autoplay={true} {...settings} >
                         {slide.map((each, index) => (
                             <div key={index} className='flex flex-col justify-center items-center' >
                                 <Image
@@ -317,10 +362,10 @@ const About = ({ user }) => {
                     <NextBtn />
 
                 </div>
-                <div className={`w-[300px] md:w-[650px] ${user ? "lg:w-[900px]" : "lg:w-[1100px]"} mt-14 relative`}>
+                <div className={`w-[300px] md:w-[650px] ${user ? "xl:w-[900px]" : "lg:w-[1100px]"} mt-14 relative`}>
                     <div >
-                        <Slider ref={slideRef} autoplaySpeed={350} autoplay={true} {...settings} slidesToScroll={1} >
-                            {slide.sort((a, b) => b - a).map((each, index) => (
+                        <Slider ref={slideRef2} autoplay={true} {...settings} slidesToScroll={1} >
+                            {slide.reverse().map((each, index) => (
                                 <div key={index} className='flex flex-col justify-center items-center' >
                                     <Image
                                         src={each.img}
@@ -331,15 +376,15 @@ const About = ({ user }) => {
                             ))
                             }
                         </Slider>
-                        <PrevBtn />
-                        <NextBtn />
+                        <PrevBtn2 />
+                        <NextBtn2 />
                     </div>
                 </div>
             </section >
 
             {/* section-5 */}
             <section className='mt-14 lg:mt-28' >
-                <div className={`w-full md:w-[650px] ${user ? "lg:w-[900px] mb-[50px]" : "lg:w-[1100px]"} h-[400px] mt-16 lg:mt-0 p-0 md:p-12 lg:p-0`} >
+                <div className={`w-full md:w-[650px] ${user ? "xl:w-[1000px] mb-[50px]" : "lg:w-[1100px]"} h-[400px] mt-16 lg:mt-0 p-0 md:p-12 lg:p-0`} >
                     <iframe
                         className='w-full h-full rounded-md'
                         frameBorder="0"

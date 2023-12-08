@@ -274,7 +274,7 @@ export default function All_users() {
 
                                                 <button
                                                     className={`text-white font-medium px-[10px] py-[6px] rounded-md select-none  transition-all text-[12px] hover:opacity-[.8] active:opacity-[.6] bg-blue-500`}
-                                                    onClick={() => edit_user(row._id, "delete_booking_modal")}
+                                                    onClick={() => edit_user(row._id)}
                                                     key={index}
                                                 >
                                                     Edit

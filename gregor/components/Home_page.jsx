@@ -6,7 +6,7 @@ import Navbar from './utilities/Navbar';
 import Contact_us from './website/Contact_us';
 import Edit_profile from './website/Edit_profile';
 import My_bookings from './booking_pages/My_bookings';
-import Subscription from './website/Subscription';
+import Become_member from './website/Become_member';
 import About from './website/About';
 import styles from "@/styles/Home.module.css";
 import Golfing_bays_bookings_admin from "./admin_pages/Golfing_bays_bookings_admin";
@@ -16,6 +16,8 @@ import All_members from './admin_pages/All_members';
 
 const HomePage = ({ page, user }) => {
     const { } = useStateContext();
+
+   
     return (
         <div className={`flex-[7] bg-[#1F2822] transition-all h-screen ${styles.scrollBar}`} >
             {user ?
@@ -34,8 +36,8 @@ const HomePage = ({ page, user }) => {
                             <About user={user} />
                             : page === "my_bookings" ?
                                 <My_bookings />
-                                : page === "subscription" ?
-                                    <Subscription />
+                                : page === "become-member" ?
+                                    <Become_member user={user}  />
                                     : page === "golfing_bays_bookings_admin" ? <Golfing_bays_bookings_admin />
                                         : page === "add_new_member" ?
                                             <Add_new_member />

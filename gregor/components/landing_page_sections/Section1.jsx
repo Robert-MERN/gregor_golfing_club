@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from "next/image";
 import Link from "next/link"
-import section1Theme from "../../public/images/golf1.png"
+import section1Theme from "../../public/images/full_logo_white.png"
 import { getCookie } from 'cookies-next';
 import Fade from "react-reveal/Fade";
 
@@ -20,7 +20,7 @@ const Section1 = () => {
 
 
 
-                        <div className='flex-1'>
+                        <div className='flex-1 flex flex-col justify-end'>
                             <Fade left >
                                 <div className='mb-6 lg:mb-8 hidden lg:block' >
 
@@ -47,7 +47,7 @@ const Section1 = () => {
                                 <p
                                     className={`text-stone-300 text-[18px] lg:text-[21px] leading-tight mb-10 text-center lg:text-left`}
                                 >
-                                    Your private golf sanctuary. Enjoy 24/7 access, member leagues, and stylish modern spaces that redefine golfing excellence.
+                                    Experience an exclusive golf retreat with round-the-clock access, member leagues, and a contemporary chic space that redefines the standards of golfing excellence.
                                 </p>
                             </Fade>
 
@@ -66,11 +66,11 @@ const Section1 = () => {
 
                         <Fade right delay={300} >
 
-                            <div className='flex-1 lg:pl-12 mt-16 lg:mt-0 p-0 md:p-12 lg:p-0' >
+                            <div className='flex-1 flex items-center justify-center lg:justify-end' >
                                 <Image
                                     alt='illustration'
                                     src={section1Theme}
-                                    className="w-full h-full object-contain"
+                                    className="w-[400px] object-contain"
                                 />
                             </div>
                         </Fade>

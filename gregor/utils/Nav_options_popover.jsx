@@ -83,7 +83,7 @@ const Nav_options_popover = ({ anchorEl, close }) => {
 
                 }
 
-                <Link href="/subscription">
+                <Link href="/become-member">
                     <button onClick={() => { close(); }} className='text-stone-200 text-[14px] xl:hidden flex items-center gap-2 cursor-pointer select-none p-[8px] hover:bg-stone-600 transition-all w-full'>
                         <CardMembershipIcon className='scale-[.8]' />
                         Become a member

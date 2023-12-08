@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import section3Theme from "../../public/images/golf3.png"
+import section3Theme from "../../public/images/center.jpg"
 import Fade from "react-reveal/Fade";
 import Link from 'next/link';
 
@@ -20,7 +20,7 @@ const Section3 = () => {
                         <Fade top long >
                             <div className='mb-6 lg:mb-8' >
                                 <h1 className={`text-stone-100 text-[26px] md:text-[34px] lg:text-[36px]  leading-tight font-bold whitespace-normal text-center lg:text-left`} >
-                                    Discover Your Ultimate Golfing Oasis at GPC
+                                    Excellence meets Aspiration at Gregor Private Club (GPC)
                                 </h1>
                             </div>
                         </Fade>

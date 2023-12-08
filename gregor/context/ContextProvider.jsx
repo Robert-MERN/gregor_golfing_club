@@ -13,6 +13,8 @@ const StateContext = createContext();
 export const ContextProvider = ({ children }) => {
     const router = useRouter();
 
+    const [show_navbar_BG, set_show_navbar_BG] = useState(false);
+
     const [landing_page_form, set_landing_page_form] = useState("signin");
 
 
@@ -235,10 +237,10 @@ export const ContextProvider = ({ children }) => {
     }
 
     // sending Mail API
-    const handleSendingMail = async (data, reverse_states) => {
+    const handle_sending_mail = async (data, reverse_states) => {
         setAPIloading(true)
         try {
-            const res = await axios.post("/api/sendMail", data);
+            const res = await axios.post("/api/contact-us", data);
             toast.success(res.data.message, { ...toastConfig, toastId: "sendMailSuccess" });
             reverse_states();
         } catch (err) {
@@ -449,6 +451,8 @@ export const ContextProvider = ({ children }) => {
         <StateContext.Provider
             value={{
 
+                show_navbar_BG, set_show_navbar_BG,
+
                 landing_page_form, handle_landing_page_form,
 
                 handleSidebar, openSidebar, switchSidebarTabs, sidebarTabs,
@@ -459,7 +463,7 @@ export const ContextProvider = ({ children }) => {
 
                 APIloading, setAPIloading, setCookieUser, cookieUser,
 
-                handleSendingMail,
+                handle_sending_mail,
 
                 modals, openModal, closeModal,
 

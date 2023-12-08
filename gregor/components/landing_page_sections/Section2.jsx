@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import section2Theme from "../../public/images/golf2.png"
+import section2Theme from "../../public/images/section2.jpg"
 import Fade from "react-reveal/Fade";
 import Link from 'next/link';
 
@@ -16,7 +16,7 @@ const Section2 = () => {
                 </Fade>
                 <div className='flex flex-col lg:flex-row w-full' >
                     <div className='flex-1 lg:pr-20 flex flex-col justify-center items-start'>
-                        <Fade left >
+                        {/* <Fade left >
 
                             <div className='mb-6 lg:mb-8 w-full' >
 
@@ -24,7 +24,7 @@ const Section2 = () => {
                                     Fulfilling Your Golfing Dreams at The Gregor
                                 </h1>
                             </div>
-                        </Fade>
+                        </Fade> */}
                         <Fade left delay={150} >
                             <p className={`text-stone-300 text-[16px] md:text-[18px] lg:text-[20px] leading-tight text-center lg:text-left mb-5 lg:mb-10`}>
                                 The Gregor is a private luxury indoor golf club where members come to socialize, entertain, and play golf.  Members enjoy premium furnishings, sophisticated modern design, access to the club 24/7, member golf leagues, and an overall environment dedicated to passionate supporters of Golf.

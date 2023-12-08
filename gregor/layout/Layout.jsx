@@ -57,13 +57,13 @@ const Layout = ({ children }) => {
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
-            
+
             <Select_players_modal open={modals} close={closeModal} />
 
             <Logout_modal open={modals} close={() => closeModal("logout_modal")} />
 
             <Delete_booking_modal open={modals} close={() => closeModal("delete_booking_modal")} />
-            
+
             <Delete_member_modal open={modals} close={() => closeModal("delete_member_modal")} />
 
             <Block_member_modal open={modals} close={() => closeModal("block_member_modal")} />

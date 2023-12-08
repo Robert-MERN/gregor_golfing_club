@@ -24,7 +24,7 @@ const Footer = () => {
     {
       icon: <MailIcon />,
       name: "icon-4",
-      link: "mailto:info@gpcgolf.com",
+      link: "mailto:access@gpcgolf.com",
     }
   ]
   const [hover, sethover] = useState({
@@ -51,13 +51,16 @@ const Footer = () => {
           </div>
           <div className='flex-1 lg:border-x border-t lg:border-t-0 border-stone-600 flex flex-col gap-5 2xl:gap-6 lg:px-8 items-center lg:items-start pt-6 lg:pt-0' >
             <Link href="/" >
-              <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >GPC-Golf</p>
-            </Link>
-            <Link href="/login" >
-              <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Member Login</p>
+              <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Home</p>
             </Link>
             <Link href="/about" >
               <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >About</p>
+            </Link>
+            <Link href="/become-member" >
+              <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Become a Member</p>
+            </Link>
+            <Link href="/become-member" >
+              <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Member login</p>
             </Link>
             <Link href="/contact-us" >
               <p className='text-[14px] md:text-[16px] text-stone-100 font-semibold hover:text-stone-400 transition-all' >Contact Us</p>
@@ -78,11 +81,11 @@ const Footer = () => {
                   </a>
                 ))}
             </div>
-            <a rel="noreferrer noopener" href="tel:1-800-555-0101" className=" text-stone-100 font-medium text-[14px] md:text-[16px] hover:text-stone-400 transition-all text-center">
-              <CallIcon className='mr-3 scale-90' ></CallIcon> <span>1-800-555-0101</span>
+            <a rel="noreferrer noopener" href="tel:+12486907370" className=" text-stone-100 font-medium text-[14px] md:text-[16px] hover:text-stone-400 transition-all text-center">
+              <CallIcon className='mr-3 scale-90' ></CallIcon> <span>(248) 690-7370</span>
             </a>
-            <a rel="noreferrer noopener" href="mailto:info@gpcgolf.com" className=" text-stone-100 font-medium hover:text-stone-400 transition-all text-[14px] md:text-[16px] text-center">
-              <MailIcon className='mr-3 scale-90' ></MailIcon> <span>info@gpcgolf.com</span>
+            <a rel="noreferrer noopener" href="mailto:access@gpcgolf.com" className=" text-stone-100 font-medium hover:text-stone-400 transition-all text-[14px] md:text-[16px] text-center">
+              <MailIcon className='mr-3 scale-90' ></MailIcon> <span>access@gpcgolf.com</span>
             </a>
             <a rel="noreferrer noopener" target='__blank' href="https://goo.gl/maps/qHeMvKq2oMa6iDCy9" className=" text-stone-100 font-medium hover:text-stone-400 transition-all text-[14px] md:text-[16px] text-center">
               <LocationOnIcon className='mr-3 scale-90' ></LocationOnIcon> <span>169w. Clarkston Rd.

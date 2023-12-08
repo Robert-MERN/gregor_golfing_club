@@ -123,7 +123,7 @@ export default function All_bookings() {
             </div>
             {page_content === "all_users_bookings" ?
 
-                <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar} h-full mb-8 md:mb-4 xl:mb-8`} >
+                <div className={`w-[90vw] lg:w-[1000px] xl:w-[1200] 2xl:w-[1400px] rounded-md ${styles.scrollBar}  overflow-x-auto h-full md:mb-4 xl:mb-8`}>
                     <TableContainer style={{ width: "100%", height: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
                         <Table size="medium" aria-label="My Booking">
                             <TableHead>
@@ -196,7 +196,7 @@ export default function All_bookings() {
 
                 : page_content === "all_restricted_slots" ?
 
-                    <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar} h-full mb-8 md:mb-4 xl:mb-8`}>
+                    <div className={`w-[90vw] lg:w-[1000px] xl:w-[1200] 2xl:w-[1400px] rounded-md ${styles.scrollBar}  overflow-x-auto h-full md:mb-4 xl:mb-8`}>
                         <TableContainer style={{ width: "100%", height: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
                             <Table size="medium" aria-label="My Booking">
                                 <TableHead>
@@ -265,7 +265,7 @@ export default function All_bookings() {
 
                     :
 
-                    <div className={`w-[90vw] lg:w-full overflow-x-auto rounded-md ${styles.scrollBar} h-full mb-8 md:mb-4 xl:mb-8`}>
+                    <div className={`w-[90vw] lg:w-[1000px] xl:w-[1200] 2xl:w-[1400px] rounded-md ${styles.scrollBar}  overflow-x-auto h-full md:mb-4 xl:mb-8`}>
                         <TableContainer style={{ width: "100%", height: "100%" }} className={`${styles.scrollBar}`} component={Paper}>
                             <Table size="medium" aria-label="My Booking">
                                 <TableHead>

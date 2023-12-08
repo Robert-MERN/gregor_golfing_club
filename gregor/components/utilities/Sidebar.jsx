@@ -64,7 +64,7 @@ const Sidebar = () => {
             navLinks: [
                 {
                     name: "Become A Member",
-                    link: "/subscription",
+                    link: "/become-member",
                     icon: <CardMembershipIcon />
                 },
                 {
@@ -114,7 +114,7 @@ const Sidebar = () => {
             navLinks: [
                 {
                     name: "Become A Member",
-                    link: "/subscription",
+                    link: "/become-member",
                     icon: <CardMembershipIcon />
                 },
                 {

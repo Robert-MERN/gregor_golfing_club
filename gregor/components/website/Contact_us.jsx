@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -17,9 +17,23 @@ import { Fade } from 'react-reveal';
 
 const Contact_us = ({ user }) => {
 
-    const { openSidebar, cookieUser } = useStateContext();
+    const { openSidebar, cookieUser, set_show_navbar_BG, handle_sending_mail } = useStateContext();
 
-    const [formState, setFormState] = useState({
+    const controlNavbar = () => {
+        const scrollVal = document.getElementById("contact-page").scrollTop;
+        if (scrollVal < 100) {
+            set_show_navbar_BG(false);
+        } else {
+            set_show_navbar_BG(true);
+
+        }
+    }
+
+    useEffect(() => {
+        controlNavbar();
+    }, [])
+
+    const default_form_state = {
         email: '',
         fullName: '',
         subject: '',
@@ -30,7 +44,8 @@ const Contact_us = ({ user }) => {
             subject: '',
             message: '',
         },
-    });
+    }
+    const [formState, setFormState] = useState(default_form_state);
 
 
     const icons = [
@@ -145,16 +160,14 @@ const Contact_us = ({ user }) => {
             errors,
         }));
         if (Object.values(errors).every((error) => !error)) {
-            // Form is valid, submit it
-            // ...
+            handle_sending_mail(formState, () => setFormState(default_form_state));
 
         }
     }
 
-
     return (
         <Fade duration={500} >
-            <div className={`${styles.scrollBar} ${user ? "h-[calc(100vh-60px)]" : "h-screen"} overflow-y-scroll w-full`} >
+            <div onScroll={controlNavbar} id="contact-page" className={`${styles.scrollBar} ${user ? "h-[calc(100vh-60px)]" : "h-screen"} overflow-y-scroll w-full`} >
                 <div className={`w-full flex justify-center relativ px-[20px]  ${openSidebar ? "lg:px-[40px]" : "lg:px-[80px]"}  pt-24 ${cookieUser ? "lg:pt-6" : "lg:pt-24"} transition-all duration-300 ${styles.scrollBar}`} >
 
                     <div className='w-full flex items-center flex-col' >

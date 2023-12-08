@@ -9,6 +9,8 @@ import Landing_page from '@/components/Landing_page'
 
 
 export default function Home() {
+
+ 
   return (
     <div className={`w-screen h-fit bg-[#1F2822] relative ${styles.container}`} >
       <Head>
@@ -17,7 +19,7 @@ export default function Home() {
         <link rel="icon" href="/images/icon_logo.png" />
       </Head>
       <Navbar />
-      <Landing_page  />
+      <Landing_page />
     </div>
   )
 }
